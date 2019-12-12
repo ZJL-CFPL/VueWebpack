@@ -1,0 +1,8 @@
+{
+  "presets": [
+    "@babel/preset-env"
+  ],
+  "plugins": [
+    "transform-vue-jsx","@babel/plugin-syntax-dynamic-import"// 支持babel语法动态导入的插件
+  ]
+}

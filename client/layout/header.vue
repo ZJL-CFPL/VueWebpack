@@ -1,0 +1,21 @@
+<template>
+  <header class="main-header">
+    <h1>Create Something</h1>
+  </header>
+</template>
+
+<style lang="stylus" scoped>
+.main-header{
+  text-align center
+  h1{
+    font-size 100px
+    color: rgba(175, 47, 47, 0.4)
+    font-weight 100
+    margin 20px
+    transition  color .4s
+    &:hover{
+      color red
+    }
+  }
+}
+</style>
