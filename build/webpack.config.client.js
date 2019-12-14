@@ -4,18 +4,21 @@ const isDev = process.env.NODE_ENV === 'development' // process.env可以读取n
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 打包css为单独文件
 const {
-  CleanWebpackPlugin,
-} = require('clean-webpack-plugin');
+  CleanWebpackPlugin
+} = require('clean-webpack-plugin')
 
 const baseConfig = require('./webpack.config.base') // webpack自定义公共配置
 const merge = require('webpack-merge')
+
+const VueClientPlugin = require('vue-server-renderer/client-plugin') // 用于服务端渲染插件
 
 const defaultPlugins = [
   new webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: isDev ? '"development"' : '"production"'
     }
-  })
+  }),
+  new VueClientPlugin()
 ]
 
 let config
@@ -69,13 +72,13 @@ if (isDev) {
         filename: 'index.html',
         template: 'index.html',
         inject: true
-      }),
+      })
     ])
   })
 } else {
   config = merge(baseConfig, {
     entry: {
-      app: path.join(__dirname, '../client/index.js')
+      app: path.join(__dirname, '../client/client-entry.js')
     },
     output: {
       filename: 'assets/js/[name].[chunkhash:8].js',

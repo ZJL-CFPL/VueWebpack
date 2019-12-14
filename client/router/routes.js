@@ -1,6 +1,3 @@
-import Todo from '../pages/todo/todo.vue'
-import Login from '../pages/login/login.vue'
-
 export default [
   {
     path: '/',
@@ -9,12 +6,12 @@ export default [
   {
     path: '/app',
     name: 'Todo',
-    component: Todo
+    component: () => import('../pages/todo/todo.vue') // 异步加载路由 写法
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login,
+    component: () => import('../pages/login/login.vue'),
     meta: {
       title: 'this is login',
       description: '登陆页'

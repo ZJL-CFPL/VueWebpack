@@ -7,10 +7,11 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 const config = {
   mode: process.env.NODE_ENV || 'production', // development || production
-  entry: path.join(__dirname, '../client/index.js'),
+  entry: path.join(__dirname, '../client/client-entry.js'),
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, '../dist')
+    path: path.join(__dirname, '../dist'),
+    publicPath: 'http://127.0.0.1:8000/' // 服务端渲染需要
   },
   module: {
     rules: [
