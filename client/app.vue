@@ -9,6 +9,7 @@
     >
       abc {{ counter }} {{ fullName }}
     </div>
+    <notification content="test notify" />
     <main-footer />
   </div>
 </template>

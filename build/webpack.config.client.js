@@ -26,7 +26,7 @@ const devServer = {
   port: 8000,
   host: '0.0.0.0',
   overlay: {
-    errors: true,
+    errors: true
   },
   quiet: true, // necessary for FriendlyErrorsPlugin
   hot: true, // 热更新，配合webpack自带HotmoduleReplacementPlugin使用。实现页面不刷新，完成数据实时显示。若为false，页面会刷新
@@ -70,7 +70,7 @@ if (isDev) {
       new webpack.HotModuleReplacementPlugin(),
       new HtmlWebpackPlugin({
         filename: 'index.html',
-        template: 'index.html',
+        template: path.join(__dirname, 'template.html'),
         inject: true
       })
     ])
@@ -82,17 +82,17 @@ if (isDev) {
     },
     output: {
       filename: 'assets/js/[name].[chunkhash:8].js',
-      // publicPath: '/'
+      publicPath: '/dist/'
     },
     module: {
       rules: [{
         test: /\.styl/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '../../'
-            }
+            loader: MiniCssExtractPlugin.loader
+            // options: {
+            //   publicPath: '../../'
+            // }
           },
           'css-loader',
           {
@@ -108,11 +108,12 @@ if (isDev) {
     plugins: defaultPlugins.concat([
       new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
-        filename: 'assets/css/[name].[hash:8].css'
+        filename: 'assets/css/[name].[hash:8].css',
+        publicPath: '/dist/'
       }),
       new HtmlWebpackPlugin({
         filename: 'index.html',
-        template: 'index.html',
+        template: path.join(__dirname, 'template.html'),
         inject: true,
         minify: {
           html5: true,
@@ -120,14 +121,14 @@ if (isDev) {
           collapseWhitespace: true,
           removeAttributeQuotes: true,
           minifyCSS: true,
-          minifyJS: true,
+          minifyJS: true
         },
         // necessary to consistently work with multiple chunks via CommonsChunkPlugin
         chunksSortMode: 'dependency'
-      }),
+      })
     ]),
     optimization: {
-      splitChunks: {// 分离公共包
+      splitChunks: { // 分离公共包
         chunks: 'all',
         minSize: 0,
         // maxSize: 0,
@@ -139,11 +140,11 @@ if (isDev) {
             // test:/(react|react-dom)/,
             name: 'commons',
             chunks: 'all',
-            minChunks: 2,
-          },
-        },
-      },
-    },
+            minChunks: 2
+          }
+        }
+      }
+    }
   })
 }
 module.exports = config

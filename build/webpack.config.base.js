@@ -13,6 +13,12 @@ const config = {
     path: path.join(__dirname, '../dist'),
     publicPath: 'http://127.0.0.1:8000/' // 服务端渲染需要
   },
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      'assets': path.join(__dirname, '../client/assets/')
+    }
+  },
   module: {
     rules: [
       {

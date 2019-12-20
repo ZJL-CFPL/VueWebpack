@@ -2,7 +2,7 @@ const Router = require('koa-router')
 const axios = require('axios')
 const path = require('path')
 const fs = require('fs')
-const MemoryFS = require('memory-fs')
+const MemoryFS = require('memory-fs') // 运行环境在内存，和fs的区别
 const webpack = require('webpack')
 const VueServerRenderer = require('vue-server-renderer')
 const serverRender = require('./server-render')
@@ -18,7 +18,7 @@ serverCompiler.watch({}, (err, stats) => {
   if (err) throw err
   stats = stats.toJson()
   stats.errors.forEach(err => console.log(err))
-  stats.warnings.forEach(warn => console.log(warn))
+  stats.warnings.forEach(warn => console.warn(warn))
 
   const bundlePath = path.join(
     serverConfig.output.path,

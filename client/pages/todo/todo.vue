@@ -21,8 +21,13 @@
         @clearAllCompleted="clearAllCompleted"
       />
     </section>
+    <!-- <img
+      class="test"
+      :src="testpic"
+      alt=""
+    > -->
     <router-link to="/login">
-      去登陆
+      去登陆~
     </router-link>
   </div>
 </template>
@@ -30,6 +35,7 @@
 <script>
 import Item from './item.vue'
 import Tabs from './tabs.vue'
+// import testpic from 'assets/img/pic-product3.png'
 let id = 0
 export default {
   name: 'Todo',
@@ -41,6 +47,7 @@ export default {
     return {
       todos: [],
       filter: 'all'
+      // testpic
     }
   },
   computed: {
@@ -99,5 +106,9 @@ export default {
   padding: 16px 16px 16px 60px;
   border: none;
   box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+}
+.test{
+  display block
+  width 100px
 }
 </style>

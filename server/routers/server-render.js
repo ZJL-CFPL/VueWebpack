@@ -9,12 +9,13 @@ module.exports = async (ctx, renderer, template) => {
 
   try {
     const appString = await renderer.renderToString(context)
-    const { title } = context.meta.inject()
+    const { title, meta } = context.meta.inject()
     const html = ejs.render(template, {
       appString,
       style: context.renderStyles(),
       scripts: context.renderScripts(),
-      title: title.text()
+      title: title.text(),
+      meta: meta.text()
     })
 
     ctx.body = html
